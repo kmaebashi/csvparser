@@ -13,6 +13,17 @@ public class CsvParserImpl extends CsvParser {
         this.reader = reader;
     }
 
+    /*
+     * このCSVパーサは、入力を１文字ずつ読み込みながら、「状態」を変えつつ
+     * 入力を解析していきます。取りうる状態を表すのが列挙型Stateです。
+     * AFTER_COMMA…カンマを読み込んだ直後の状態。初期状態もこれと同じなので
+     *   代用しています。
+     * IN_FIELD…ダブルクォートに囲まれていないフィールドの読み込み中です。
+     *   カンマが来たらAFTER_COMMAに、改行が来たら
+     * IN_QUOTE…ダブルクォートで囲まれたフィールドの読み込み中です。
+     * QUOTE_IN_QUOTE…IN_QUOTEの最中に「"」が現れた状態です。
+     * AFTER_CR…改行コードがCR+LFの場合、CRが来た状態。
+     */
     private enum State {
         AFTER_COMMA,
         IN_FIELD,
