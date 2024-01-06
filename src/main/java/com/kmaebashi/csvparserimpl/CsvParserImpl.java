@@ -7,7 +7,7 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
-public class CsvParserImpl extends CsvParser {
+public class CsvParserImpl implements CsvParser {
     Reader reader;
     public CsvParserImpl(Reader reader) {
         this.reader = reader;

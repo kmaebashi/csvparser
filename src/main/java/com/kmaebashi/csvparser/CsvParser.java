@@ -5,7 +5,7 @@ import java.nio.charset.StandardCharsets;
 
 import com.kmaebashi.csvparserimpl.CsvParserImpl;
 
-public abstract class CsvParser implements AutoCloseable {
+public interface CsvParser extends AutoCloseable {
     public static CsvParser newInstance(String path)
             throws FileNotFoundException, IOException {
         Reader reader = new BufferedReader(new InputStreamReader(
